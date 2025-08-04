@@ -1,29 +1,13 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styles from './Header.module.css'
 
 const Header = () => {
-  const location = useLocation()
-  const isHomePage = location.pathname === '/'
-  const isPlanPage = location.pathname === '/plan'
-
   return (
     <header className={styles.header}>
       <div className={styles.container}>
         <Link to="/" className={styles.logo}>
           <h1>旅プランAI</h1>
         </Link>
-        <nav className={styles.nav}>
-          {!isHomePage && (
-            <Link to="/" className={styles.navLink}>
-              ホーム
-            </Link>
-          )}
-          {!isPlanPage && (
-            <Link to="/plan" className={styles.navLink}>
-              プラン作成
-            </Link>
-          )}
-        </nav>
       </div>
     </header>
   )
