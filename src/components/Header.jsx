@@ -4,6 +4,7 @@ import styles from './Header.module.css'
 const Header = () => {
   const location = useLocation()
   const isHomePage = location.pathname === '/'
+  const isPlanPage = location.pathname === '/plan'
 
   return (
     <header className={styles.header}>
@@ -17,9 +18,11 @@ const Header = () => {
               ホーム
             </Link>
           )}
-          <Link to="/plan" className={styles.navLink}>
-            プラン作成
-          </Link>
+          {!isPlanPage && (
+            <Link to="/plan" className={styles.navLink}>
+              プラン作成
+            </Link>
+          )}
         </nav>
       </div>
     </header>
