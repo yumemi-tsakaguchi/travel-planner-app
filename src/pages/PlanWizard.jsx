@@ -10,7 +10,7 @@ const PlanWizard = () => {
     title: '',
     startDate: '',
     endDate: '',
-    cities: [''],
+    places: [''],
     selectedInterests: [],
     travelStyle: 'relaxed' // relaxed or fast
   })
@@ -24,28 +24,28 @@ const PlanWizard = () => {
     }))
   }
 
-  const handleCityChange = (index, value) => {
-    const newCities = [...formData.cities]
-    newCities[index] = value
+  const handlePlaceChange = (index, value) => {
+    const newPlaces = [...formData.places]
+    newPlaces[index] = value
     setFormData(prev => ({
       ...prev,
-      cities: newCities
+      places: newPlaces
     }))
   }
 
-  const addCity = () => {
+  const addPlace = () => {
     setFormData(prev => ({
       ...prev,
-      cities: [...prev.cities, '']
+      places: [...prev.places, '']
     }))
   }
 
-  const removeCity = (index) => {
-    if (formData.cities.length > 1) {
-      const newCities = formData.cities.filter((_, i) => i !== index)
+  const removePlace = (index) => {
+    if (formData.places.length > 1) {
+      const newPlaces = formData.places.filter((_, i) => i !== index)
       setFormData(prev => ({
         ...prev,
-        cities: newCities
+        places: newPlaces
       }))
     }
   }
@@ -74,7 +74,7 @@ const PlanWizard = () => {
       case 1:
         return formData.title.trim() && formData.startDate && formData.endDate
       case 2:
-        return formData.cities.some(city => city.trim())
+        return formData.places.some(place => place.trim())
       case 3:
         return formData.selectedInterests.length > 0
       default:
@@ -90,16 +90,20 @@ const PlanWizard = () => {
       title: formData.title,
       startDate: formData.startDate,
       endDate: formData.endDate,
-      cities: formData.cities.filter(city => city.trim()),
+      places: formData.places.filter(place => place.trim()),
       selectedInterests: formData.selectedInterests,
       travelStyle: formData.travelStyle
     })
 
     // 興味に基づいてスポットを選択し、目的地として追加
-    const filteredCities = formData.cities.filter(city => city.trim())
-    filteredCities.forEach(city => {
-      const citySpots = db.getSpotsByCity(city)
-      const matchingSpots = citySpots.filter(spot =>
+    const filteredPlaces = formData.places.filter(place => place.trim())
+    filteredPlaces.forEach(place => {
+      // 地名やランドマーク名で検索
+      const allSpots = db.getAllSpots()
+      const matchingSpots = allSpots.filter(spot =>
+        (spot.name.toLowerCase().includes(place.toLowerCase()) ||
+         spot.city.toLowerCase().includes(place.toLowerCase()) ||
+         spot.country.toLowerCase().includes(place.toLowerCase())) &&
         spot.interests.some(interest => formData.selectedInterests.includes(interest))
       )
 
@@ -162,19 +166,19 @@ const PlanWizard = () => {
       case 2:
         return (
           <div className={styles.stepContent}>
-            <h3>訪問したい都市を教えてください</h3>
-            {formData.cities.map((city, index) => (
+            <h3>行きたい場所を教えてください</h3>
+            {formData.places.map((place, index) => (
               <div key={index} className={styles.cityInput}>
                 <input
                   type="text"
-                  value={city}
-                  onChange={(e) => handleCityChange(index, e.target.value)}
-                  placeholder="都市名を入力"
+                  value={place}
+                  onChange={(e) => handlePlaceChange(index, e.target.value)}
+                  placeholder="行きたい場所を入力（例：エッフェル塔、京都、富士山）"
                   className={styles.input}
                 />
-                {formData.cities.length > 1 && (
+                {formData.places.length > 1 && (
                   <button
-                    onClick={() => removeCity(index)}
+                    onClick={() => removePlace(index)}
                     className={styles.removeButton}
                   >
                     削除
@@ -182,8 +186,8 @@ const PlanWizard = () => {
                 )}
               </div>
             ))}
-            <button onClick={addCity} className={styles.addButton}>
-              都市を追加
+            <button onClick={addPlace} className={styles.addButton}>
+              場所を追加
             </button>
           </div>
         )

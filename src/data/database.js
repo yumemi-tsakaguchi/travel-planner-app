@@ -85,6 +85,10 @@ class LocalDatabase {
     return JSON.parse(localStorage.getItem('spots') || '[]');
   }
 
+  getAllSpots() {
+    return this.getSpots();
+  }
+
   getSpotsByCity(city) {
     const spots = this.getSpots();
     return spots.filter(spot => spot.city === city);
