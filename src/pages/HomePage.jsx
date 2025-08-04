@@ -69,24 +69,6 @@ const HomePage = () => {
           </div>
         )}
       </section>
-
-      <section className={styles.features}>
-        <h3>旅プランAIの特徴</h3>
-        <div className={styles.featureGrid}>
-          <div className={styles.featureCard}>
-            <h4>🎯 興味に合わせた提案</h4>
-            <p>歴史、グルメ、絶景など、あなたの興味に基づいてスポットを厳選</p>
-          </div>
-          <div className={styles.featureCard}>
-            <h4>⏰ 最適な時間配分</h4>
-            <p>各スポットの滞在時間と移動時間を考慮した効率的なスケジュール</p>
-          </div>
-          <div className={styles.featureCard}>
-            <h4>🗺️ 自動ルート生成</h4>
-            <p>移動距離を最小化し、無駄のない旅程を自動生成</p>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
