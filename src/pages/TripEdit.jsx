@@ -145,7 +145,8 @@ const TripEdit = () => {
             city: spot.city,
             country: spot.country,
             stayDurationMinutes: spot.duration,
-            spotId: spot.id
+            spotId: spot.id,
+            description: spot.description
           })
         })
       })

@@ -130,18 +130,9 @@ ${day.destinations.map(dest => `- ${dest.name} (${formatDuration(dest.stayDurati
         </div>
 
         <div className={styles.summary}>
-          <div className={styles.summaryCard}>
-            <h3>📍 目的地</h3>
-            <p>{trip.destinations?.length || 0}か所</p>
-          </div>
-          <div className={styles.summaryCard}>
-            <h3>⏰ 合計時間</h3>
-            <p>{formatDuration(getTotalDuration())}</p>
-          </div>
-          <div className={styles.summaryCard}>
-            <h3>🏙️ 都市</h3>
-            <p>{trip.cities?.join(', ')}</p>
-          </div>
+          <span className={styles.summaryItem}>📍 {trip.destinations?.length || 0}か所</span>
+          <span className={styles.summaryItem}>⏰ {formatDuration(getTotalDuration())}</span>
+          <span className={styles.summaryItem}>🏙️ {(trip.places || trip.cities || []).join(', ')}</span>
         </div>
 
         <div className={styles.itinerary}>
@@ -168,7 +159,13 @@ ${day.destinations.map(dest => `- ${dest.name} (${formatDuration(dest.stayDurati
                         </div>
                         <div className={styles.destinationDetails}>
                           <h4>{destination.name}</h4>
-                          <p>{destination.city}, {destination.country}</p>
+                          <p className={styles.location}>{destination.city}, {destination.country}</p>
+                          {(() => {
+                            // 既存のプランの場合、spotIdから説明文を取得
+                            const description = destination.description || 
+                              (destination.spotId ? db.getSpots().find(spot => spot.id === destination.spotId)?.description : null)
+                            return description ? <p className={styles.description}>{description}</p> : null
+                          })()}
                           <div className={styles.duration}>
                             {editingDestination === destination.id ? (
                               <div className={styles.editDuration}>
