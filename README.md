@@ -28,7 +28,6 @@ AIが最適なルートと時間配分を提案する旅行プランニングア
 ### セットアップ
 
 ```bash
-cd travel-planner-app
 npm install
 ```
 
@@ -53,7 +52,6 @@ npm run deploy
 ## プロジェクト構造
 
 ```
-travel-planner-app/
 ├── src/
 │   ├── components/        # 共通コンポーネント
 │   ├── pages/            # ページコンポーネント
