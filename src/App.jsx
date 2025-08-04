@@ -3,6 +3,7 @@ import Header from './components/Header'
 import HomePage from './pages/HomePage'
 import PlanWizard from './pages/PlanWizard'
 import TripDetail from './pages/TripDetail'
+import TripEdit from './pages/TripEdit'
 import './App.css'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/plan" element={<PlanWizard />} />
             <Route path="/trip/:id" element={<TripDetail />} />
+            <Route path="/trip/:id/edit" element={<TripEdit />} />
           </Routes>
         </main>
       </div>

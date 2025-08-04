@@ -119,9 +119,14 @@ ${day.destinations.map(dest => `- ${dest.name} (${formatDuration(dest.stayDurati
               {new Date(trip.startDate).toLocaleDateString()} - {new Date(trip.endDate).toLocaleDateString()}
             </p>
           </div>
-          <button onClick={exportToPDF} className={styles.exportButton}>
-            PDF出力
-          </button>
+          <div className={styles.headerActions}>
+            <button onClick={() => navigate(`/trip/${trip.id}/edit`)} className={styles.editButton}>
+              編集
+            </button>
+            <button onClick={exportToPDF} className={styles.exportButton}>
+              PDF出力
+            </button>
+          </div>
         </div>
 
         <div className={styles.summary}>

@@ -100,9 +100,6 @@
 }
 
 .tripHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   margin-bottom: 1rem;
 }
 
@@ -115,6 +112,7 @@
 .tripActions {
   display: flex;
   gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .viewButton {
@@ -130,6 +128,21 @@
 
 .viewButton:hover {
   background: #5a6fd8;
+}
+
+.editButton {
+  background: #ffa726;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.editButton:hover {
+  background: #ff9800;
 }
 
 .deleteButton {

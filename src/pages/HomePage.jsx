@@ -44,17 +44,20 @@ const HomePage = () => {
               <div key={trip.id} className={styles.tripCard}>
                 <div className={styles.tripHeader}>
                   <h4>{trip.title}</h4>
-                  <div className={styles.tripActions}>
-                    <Link to={`/trip/${trip.id}`} className={styles.viewButton}>
-                      詳細
-                    </Link>
-                    <button
-                      onClick={() => deleteTrip(trip.id)}
-                      className={styles.deleteButton}
-                    >
-                      削除
-                    </button>
-                  </div>
+                </div>
+                <div className={styles.tripActions}>
+                  <Link to={`/trip/${trip.id}`} className={styles.viewButton}>
+                    詳細
+                  </Link>
+                  <Link to={`/trip/${trip.id}/edit`} className={styles.editButton}>
+                    編集
+                  </Link>
+                  <button
+                    onClick={() => deleteTrip(trip.id)}
+                    className={styles.deleteButton}
+                  >
+                    削除
+                  </button>
                 </div>
                 <div className={styles.tripInfo}>
                   <p className={styles.dates}>

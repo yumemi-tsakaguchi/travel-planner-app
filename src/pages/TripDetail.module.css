@@ -71,6 +71,26 @@
   background: #218838;
 }
 
+.headerActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.editButton {
+  background: #ffa726;
+  color: white;
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.editButton:hover {
+  background: #ff9800;
+}
+
 .summary {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
