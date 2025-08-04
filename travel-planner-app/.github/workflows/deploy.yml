@@ -19,16 +19,19 @@ jobs:
       with:
         node-version: '18'
         cache: 'npm'
+        cache-dependency-path: 'travel-planner-app/package-lock.json'
 
     - name: Install dependencies
       run: npm ci
+      working-directory: ./travel-planner-app
 
     - name: Build
       run: npm run build
+      working-directory: ./travel-planner-app
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       if: github.ref == 'refs/heads/main'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist
+        publish_dir: ./travel-planner-app/dist
