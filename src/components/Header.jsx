@@ -10,7 +10,7 @@ const Header = () => {
     <header className={styles.header}>
       <div className={styles.container}>
         <Link to="/" className={styles.logo}>
-          <h1>旅プランAI</h1>
+          <h1>AI旅のしおりメーカー</h1>
         </Link>
         {(isPlanPage || isEditPage) && (
           <nav className={styles.nav}>
